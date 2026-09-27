@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Profile - NURA</title>
+
+    <!-- Bootstrap CSS -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-7">
+
+                <div class="card shadow">
+                    <div class="card-body">
+
+                        <h2 class="text-center mb-4">
+                            My Profile
+                        </h2>
+
+                        <form id="profileForm">
+
+                            <div class="mb-3">
+                                <label for="fullName" class="form-label">
+                                    Full Name
+                                </label>
+
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="fullName"
+                                    name="fullName"
+                                    required
+                                >
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="phone" class="form-label">
+                                    Phone
+                                </label>
+
+                                <input
+                                    type="tel"
+                                    class="form-control"
+                                    id="phone"
+                                    name="phone"
+                                >
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="age" class="form-label">
+                                    Age
+                                </label>
+
+                                <input
+                                    type="number"
+                                    class="form-control"
+                                    id="age"
+                                    name="age"
+                                    min="1"
+                                    max="120"
+                                >
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="address" class="form-label">
+                                    Address
+                                </label>
+
+                                <textarea
+                                    class="form-control"
+                                    id="address"
+                                    name="address"
+                                    rows="3"
+                                ></textarea>
+                            </div>
+
+                            <button
+                                type="submit"
+                                class="btn btn-primary w-100">
+                                Save Profile
+                            </button>
+
+                        </form>
+
+                        <button
+                            id="logoutBtn"
+                            class="btn btn-danger w-100 mt-3">
+                            Logout
+                        </button>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <!-- Bootstrap JavaScript -->
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js">
+    </script>
+
+    <!-- Profile JavaScript -->
+    <script src="js/profile.js"></script>
+
+</body>
+</html>
