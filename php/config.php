@@ -5,9 +5,18 @@ require_once __DIR__ . '/../vendor/autoload.php';
 use Dotenv\Dotenv;
 use MongoDB\Client;
 
-// Load environment variables
+// Load .env if it exists.
+// On Railway, environment variables are provided directly by Railway.
 $dotenv = Dotenv::createImmutable(__DIR__ . '/..');
-$dotenv->load();
+$dotenv->safeLoad();
+
+// Get environment variables from .env, Railway, or server environment.
+function envValue(string $key): string
+{
+    $value = $_ENV[$key] ?? $_SERVER[$key] ?? getenv($key);
+
+    return $value === false ? '' : $value;
+}
 
 try {
 
@@ -15,10 +24,10 @@ try {
     // MySQL Connection
     // ====================
 
-    $host = $_ENV['DB_HOST'];
-    $dbname = $_ENV['DB_NAME'];
-    $username = $_ENV['DB_USER'];
-    $password = $_ENV['DB_PASSWORD'];
+    $host = envValue('DB_HOST');
+    $dbname = envValue('DB_NAME');
+    $username = envValue('DB_USER');
+    $password = envValue('DB_PASSWORD');
 
     $pdo = new PDO(
         "mysql:host=$host;dbname=$dbname;charset=utf8mb4",
@@ -42,15 +51,15 @@ try {
     // ====================
 
     $mongoClient = new Client(
-        $_ENV['MONGO_URI']
+        envValue('MONGO_URI')
     );
 
     $mongoDatabase = $mongoClient->selectDatabase(
-        $_ENV['MONGO_DB']
+        envValue('MONGO_DB')
     );
 
     $mongoProfiles = $mongoDatabase->selectCollection(
-        $_ENV['MONGO_COLLECTION']
+        envValue('MONGO_COLLECTION')
     );
 
 
@@ -61,8 +70,8 @@ try {
     $redis = new Redis();
 
     $redis->connect(
-        $_ENV['REDIS_HOST'],
-        (int) $_ENV['REDIS_PORT']
+        envValue('REDIS_HOST'),
+        (int) envValue('REDIS_PORT')
     );
 
 
