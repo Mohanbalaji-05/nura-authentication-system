@@ -3,7 +3,7 @@ FROM php:8.2-cli
 RUN apt-get update \
     && apt-get install -y git unzip libssl-dev pkg-config \
     && docker-php-ext-install pdo_mysql \
-    && pecl install mongodb redis \
+    && pecl install mongodb-1.21.0 redis \
     && docker-php-ext-enable mongodb redis \
     && rm -rf /var/lib/apt/lists/*
 
