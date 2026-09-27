@@ -74,6 +74,17 @@ try {
         (int) envValue('REDIS_PORT')
     );
 
+    // Authenticate with Railway Redis credentials
+    $redisUser = envValue('REDIS_USER');
+    $redisPassword = envValue('REDIS_PASSWORD');
+
+    if ($redisUser !== '' && $redisPassword !== '') {
+        $redis->auth([
+            $redisUser,
+            $redisPassword
+        ]);
+    }
+
 
 } catch (Throwable $e) {
 
